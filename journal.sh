@@ -99,7 +99,9 @@ if [ "$INCLUDE_WEATHER" = true ]; then
     ENTRY+="**Weather:** $WEATHER\n\n"
 fi
 
-ENTRY+="---\n\n## To Do:\n- [ ] example\n\n"
+ENTRY+="---\n\n## To Do:\n- [ ] write a test\n\n"
+
+ENTRY+="---\n\n## Notes:\n- [ ] I did great work today!\n\n"
 
 # Fetch a dad joke if requested
 if [ "$INCLUDE_JOKE" = true ]; then
