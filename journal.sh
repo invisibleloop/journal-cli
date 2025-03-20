@@ -23,30 +23,34 @@ update_script() {
     exit 0
 }
 
-# Check for the update command
-if [[ "$1" == "update" ]]; then
-    update_script
-fi
-
-# Check for updates before running
-check_for_updates
-
 # Function to display usage
 usage() {
     echo "Usage: journal create --path <directory> [-w] [-j]"
+    echo "  create               Create a new journal entry"
+    echo "  update               Update Journal CLI to the latest version"
     echo "  --path <directory>   Set the journal directory (default: ~/journal)"
     echo "  -w                   Include weather"
     echo "  -j                   Include a dad joke"
     exit 1
 }
 
-# Ensure the first argument is 'create'
+# Check if first argument is missing or invalid
+if [[ "$1" == "" ]]; then
+    usage
+fi
+
+# Handle update command
+if [[ "$1" == "update" ]]; then
+    update_script
+fi
+
+# Handle create command
 if [[ "$1" != "create" ]]; then
     usage
 fi
-shift  # Remove 'create' from the arguments list
+shift  # Remove 'create' from the argument list
 
-# Parse remaining arguments
+# Parse arguments
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
         --path)
@@ -111,3 +115,4 @@ code "$FILE_PATH"
 
 # Confirm creation
 echo "Journal entry created: $FILE_PATH"
+
