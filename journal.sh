@@ -3,13 +3,19 @@
 JOURNAL_DIR="$HOME/journal"
 INCLUDE_WEATHER=false
 INCLUDE_JOKE=false
-VERSION="0.1.0"
 REPO_URL="https://raw.githubusercontent.com/invisibleloop/journal-cli/main"
+VERSION_FILE="$HOME/.journal_version"
+VERSION="0.1.0"
+
+# Load the stored version if it exists
+if [[ -f "$VERSION_FILE" ]]; then
+    VERSION=$(cat "$VERSION_FILE")
+fi
 
 # Function to check for updates
 check_for_updates() {
     LATEST_VERSION=$(curl -fsSL "$REPO_URL/version.txt")
-    if [[ "$LATEST_VERSION" != "$VERSION" ]]; then
+    if [[ "$LATEST_VERSION" != "$(cat $VERSION_FILE 2>/dev/null || echo "$VERSION")" ]]; then
         echo "🚀 A new version ($LATEST_VERSION) is available! Run 'journal update' to upgrade."
     fi
 }
@@ -19,7 +25,12 @@ update_script() {
     echo "🔄 Updating Journal CLI..."
     curl -fsSL "$REPO_URL/journal.sh" -o "$0"
     chmod +x "$0"
-    echo "✅ Journal CLI updated successfully!"
+
+    # Fetch and store the new version
+    LATEST_VERSION=$(curl -fsSL "$REPO_URL/version.txt")
+    echo "$LATEST_VERSION" > "$VERSION_FILE"
+
+    echo "✅ Journal CLI updated successfully to version $LATEST_VERSION!"
     exit 0
 }
 
