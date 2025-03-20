@@ -22,6 +22,27 @@ This will:
 - Add it to `~/.local/bin/` (so you can run `journal` anywhere)
 - Set up a cron job to create a new journal entry every day at 00:01 AM
 
+### Command Not Found?
+If you see `command not found: journal` after installing, your shell might not be recognizing `~/.local/bin/`. Fix this by adding it to your `PATH`:
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+
+To make this change permanent, add it to your shell configuration file:
+
+- **For Zsh users** (default on macOS):
+  ```bash
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc
+  source ~/.zshrc
+  ```
+
+- **For Bash users** (default on most Linux distros):
+  ```bash
+  echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+  source ~/.bashrc
+  ```
+
 ## Usage
 
 ### Create a Journal
@@ -95,5 +116,4 @@ MIT License
 
 ## Contributing
 Pull requests are welcome! Feel free to fork the repo and submit improvements.
-
 
