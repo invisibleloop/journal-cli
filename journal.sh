@@ -4,7 +4,7 @@ JOURNAL_DIR="$HOME/journal"
 INCLUDE_WEATHER=false
 INCLUDE_JOKE=false
 VERSION="1.0.0"
-REPO_URL="https://raw.githubusercontent.com/YOUR_USERNAME/journal-cli/main"
+REPO_URL="https://raw.githubusercontent.com/invisibleloop/journal-cli/main"
 
 # Function to check for updates
 check_for_updates() {
