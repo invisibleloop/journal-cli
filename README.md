@@ -24,8 +24,8 @@ This will:
 
 ## Usage
 
-### Create a Journal Entry
-To manually create a journal entry, run:
+### Create a Journal
+To create a journal, run:
 ```bash
 journal create --path ~/journal -w -j
 ```
@@ -96,6 +96,4 @@ MIT License
 ## Contributing
 Pull requests are welcome! Feel free to fork the repo and submit improvements.
 
-## Author
-[Your Name](https://github.com/YOUR_USERNAME)
 
