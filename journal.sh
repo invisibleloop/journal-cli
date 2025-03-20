@@ -40,7 +40,13 @@ usage() {
     exit 1
 }
 
-# Parse arguments
+# Ensure the first argument is 'create'
+if [[ "$1" != "create" ]]; then
+    usage
+fi
+shift  # Remove 'create' from the arguments list
+
+# Parse remaining arguments
 while [[ "$#" -gt 0 ]]; do
     case "$1" in
         --path)
